@@ -1,0 +1,13 @@
+app = "fashion-excel-parser"
+primary_region = "fra"
+
+[build]
+dockerfile = "Dockerfile"
+
+[[services]]
+internal_port = 8080
+protocol = "tcp"
+
+[[services.ports]]
+handlers = ["http"]
+port = 80
