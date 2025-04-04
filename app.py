@@ -27,6 +27,7 @@ def load_data(file_path):
 def index():
     global data_df
     message = ""
+
     if request.method == 'POST':
         file = request.files['file']
         if file:
@@ -34,7 +35,10 @@ def index():
             file.save(file_path)
             load_data(file_path)
             message = "Файл успешно загружен и обработан"
-    
+    else:
+        data_df = pd.DataFrame()  # <-- очищаем при GET
+
+    # далее без изменений...
     filtered_df = data_df.copy()
     filter_gender = request.args.get('gender', None)
     filter_season = request.args.get('season', None)
